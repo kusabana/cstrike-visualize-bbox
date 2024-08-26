@@ -1,0 +1,16 @@
+[project]
+name = "cstrike-visualize-bbox"
+version = "0.1.0"
+languages = ["CXX"]
+
+[fetch-content]
+eleos = { git = "https://github.com/kusabana/eleos", tag = "v1.0.0" }
+
+[target.visualize_bbox]
+type = "shared"
+sources = ["src/**.cpp", "include/**.hpp"]
+compile-options = ["-m32"] # use toolchain instead?
+link-options = ["-m32"]
+include-directories = ["include"]
+compile-features = ["cxx_std_20"]
+link-libraries = ["eleos"]
