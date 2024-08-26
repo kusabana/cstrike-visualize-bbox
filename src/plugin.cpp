@@ -53,14 +53,14 @@ auto visualize_bbox_plugin::load(
 auto visualize_bbox_plugin::unload( ) -> void {
   const auto base =
     reinterpret_cast< struct link_map * >( client_handle )->l_addr;
-  const auto jmp = base + VISUALIZE_COLLISION_BOUNDS_OFFSET;
+  const auto jnz = base + VISUALIZE_COLLISION_BOUNDS_OFFSET;
 
   const auto aligned =
-    reinterpret_cast< void * >( jmp & ~( page_size - 1 ) );
+    reinterpret_cast< void * >( jnz & ~( page_size - 1 ) );
   mprotect( aligned, page_size, PROT_READ | PROT_WRITE | PROT_EXEC );
 
   // Convert jnz to jz
-  *reinterpret_cast< char * >( jmp + 1 ) = 0x84;
+  *reinterpret_cast< char * >( jnz + 1 ) = 0x84;
 
   mprotect( aligned, page_size, PROT_READ | PROT_EXEC );
 
