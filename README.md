@@ -6,4 +6,4 @@ Client Plugin for Counter-Strike: Source that displays the bounding boxes of ent
 </div>
 
 > [!NOTE]  
-> Offsets are up to date as of version 6630498
+> Offsets are up to date as of version `6630498`
